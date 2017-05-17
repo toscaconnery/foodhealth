@@ -306,7 +306,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="" method="post">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Title</label>
                                             <input type="text" name="Title" class="form-control">
