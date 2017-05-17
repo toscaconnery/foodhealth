@@ -10,7 +10,7 @@ class ControllerInputReport extends Controller
 {
     public function NewReportButton()
     {
-    	//
+    	return view('FormInputReport');
     }
 
     public function SubmitReportButton()

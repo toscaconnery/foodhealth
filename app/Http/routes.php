@@ -19,4 +19,6 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('aha', 'ControllerAddAccount@test');
+Route::get('input-report', 'ControllerInputReport@NewReportButton');
+Route::post('input-report', 'ControllerInputReport@SubmitReportButton');
+
