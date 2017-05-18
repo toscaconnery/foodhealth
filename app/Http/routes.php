@@ -22,3 +22,12 @@ Route::get('/home', 'HomeController@index');
 Route::get('input-report', 'ControllerInputReport@NewReportButton');
 Route::post('input-report', 'ControllerInputReport@SubmitReportButton');
 
+Route::get('display-report', 'ControllerDisplayReport@LoadDatabase');
+
+Route::get('modify-account', 'ControllerModifyAccount@EditUser');
+Route::post('modify-account', 'ControllerModifyAccount@SaveToDB');
+
+Route::get('logout', function() {
+	Auth::logout();
+	return view('home');
+});
