@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = 'display-report';
 
     /**
      * Create a new authentication controller instance.
@@ -48,11 +48,25 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
+        //dd($data);
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'usertype' => 'required|max:30',
+            'gender' => 'required',
+            'phone' => 'required',
+            'dob' => 'required',
         ]);
+        // dd(Validator::make($data, [
+        //     'name' => 'required|max:255',
+        //     'email' => 'required|email|max:255|unique:users',
+        //     'password' => 'required|min:6|confirmed',
+        //     'usertype' => 'required|max:30',
+        //     'gender' => 'required',
+        //     'phone' => 'required',
+        //     'dob' => 'required',
+        // ]));
     }
 
     /**
@@ -63,10 +77,15 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        //dd('masuk');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'usertype' => $data['usertype'],
+            'gender' => $data['gender'],
+            'phone' => $data['phone'],
+            'dob' => $data['dob'],
         ]);
     }
 }

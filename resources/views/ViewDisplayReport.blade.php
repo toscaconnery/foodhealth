@@ -92,7 +92,7 @@
                     @foreach($report as $report)
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3>{{$report->longitude}} {{$report->latitude}}</h3>
+                            <h3>{{$report->title}}</h3>
                             <p>{{$report->description}}</p>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
@@ -123,7 +123,8 @@
                                 </table>
                             </div>
                             <div>
-                                <img src="{{url('')}}/canteeen.jpg">
+                                <img src="{{url('')}}/canteen.jpg">
+                                <br>
                                 @if($report->isvalidated == 0)
                                     <br>
                                     <a href="{{url('')}}/validate-report/{{$report->id}}" class="button"><button>Validate this report</button></a>
