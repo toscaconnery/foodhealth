@@ -64,13 +64,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
+                            <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
+                            <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
+                            <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
                     </ul>
                 </div>
@@ -122,22 +122,22 @@
                                             <label>Gender</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="Gender" id="optionsRadios1" value="1" {{$user->Gender == 1 ? "checked" : ""}}>Male
+                                                    <input type="radio" name="gender" id="optionsRadios1" value="1" {{$user->gender == 1 ? "checked" : ""}}>Male
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="Gender" id="optionsRadios2" value="2" {{$user->Gender == 2 ? "checked" : ""}}>Female
+                                                    <input type="radio" name="gender" id="optionsRadios2" value="2" {{$user->gender == 2 ? "checked" : ""}}>Female
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input type="number" name="Phone" class="form-control" value="{{$user->Phone}}">
+                                            <input type="number" name="phone" class="form-control" value="{{$user->phone}}">
                                         </div>
                                         <div class="form-group">
                                             <label>Date of birth</label>
-                                            <input type="date" name="DoB" class="form-control" value="{{$user->DoB}}">  
+                                            <input type="date" name="dob" class="form-control" value="{{$user->dob}}">  
                                         </div>
                                         <br>
                                         <br>

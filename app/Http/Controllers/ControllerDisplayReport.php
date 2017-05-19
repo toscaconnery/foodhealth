@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use DB;
+use App\Report;
 
 class ControllerDisplayReport extends Controller
 {
@@ -15,9 +16,13 @@ class ControllerDisplayReport extends Controller
         return view('ViewDisplayReport', $this->data);
     }
 
-    public function ValidateReport()
+    public function ValidateReport($id)
     {
-    	//
+    	$report = Report::find($id);
+        $report->isvalidated = 1;
+        $report->save();
+
+        return redirect('display-report');
     }
 
     public function GetReport()

@@ -65,13 +65,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
+                            <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
+                            <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
+                            <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
                     </ul>
                 </div>
@@ -101,11 +101,11 @@
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Title</label>
-                                            <input type="text" name="Title" class="form-control">
+                                            <input type="text" name="title" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" name="Description" rows="3"></textarea>
+                                            <textarea class="form-control" name="description" rows="3"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>File input</label>

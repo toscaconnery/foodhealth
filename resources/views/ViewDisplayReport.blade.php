@@ -64,13 +64,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
+                            <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
+                            <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
+                            <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
                     </ul>
                 </div>
@@ -92,8 +92,8 @@
                     @foreach($report as $report)
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3>{{$report->Longitude}} {{$report->Latitude}}</h3>
-                            <p>{{$report->Description}}</p>
+                            <h3>{{$report->longitude}} {{$report->latitude}}</h3>
+                            <p>{{$report->description}}</p>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
                                     <thead>
@@ -115,8 +115,8 @@
                                     <tbody>
                                         <tr>
                                             <td>{{$report->created_at}}</td>
-                                            <td>{{$report->Longitude}} {{$report->Latitude}}</td>
-                                            <td>{{$report->IsValidated == 1 ? "Validated" : "Not Validated"}}</td>
+                                            <td>{{$report->longitude}} {{$report->latitude}}</td>
+                                            <td>{{$report->isvalidated == 1 ? "Validated" : "Not Validated"}}</td>
                                             <td>{{$report->name}}</td>
                                         </tr>
                                     </tbody>
@@ -124,6 +124,10 @@
                             </div>
                             <div>
                                 <img src="{{url('')}}/canteeen.jpg">
+                                @if($report->isvalidated == 0)
+                                    <br>
+                                    <a href="{{url('')}}/validate-report/{{$report->id}}" class="button"><button>Validate this report</button></a>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,6 @@ class Report extends Model
 	protected $table = 'report';
 
 	protected $fillable = [
-		'Title', 'Description', 'ImagePath', 'Longitude', 'Latitude', 'IsValidated', 'Staff',
+		'title', 'description', 'imagepath', 'longitude', 'latitude', 'isvalidated', 'staff',
 	];
 }

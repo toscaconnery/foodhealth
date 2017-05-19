@@ -39,14 +39,14 @@ class ControllerModifyAccount extends Controller
                 $user->password = bcrypt($request->password);
                 //dd($user->password);
             }
-            if(isset($request->Gender)){
-                $user->Gender = $request->Gender;
+            if(isset($request->gender)){
+                $user->gender = $request->gender;
             }
             if(isset($request->Phone)){
-                $user->Phone = $request->Phone;
+                $user->phone = $request->phone;
             }
             if(isset($request->DoB)){
-                $user->DoB = $request->DoB;
+                $user->dob = $request->dob;
             }
             $user->save();
         }
