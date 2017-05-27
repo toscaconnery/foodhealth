@@ -67,9 +67,9 @@
                         <li>
                             <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
@@ -97,7 +97,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="" method="post">
+                                    <form role="form" action="" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Title</label>
@@ -109,7 +109,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>File input</label>
-                                            <input type="file">
+                                            <input type="file" name="berkas">
                                         </div>
                                         
 

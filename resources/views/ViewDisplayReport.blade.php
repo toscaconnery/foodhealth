@@ -32,6 +32,30 @@
 
 </head>
 
+<style>
+#map {
+width: 500px;
+height: 400px;
+}
+</style>
+
+    <script>
+      function initMap() {
+        var uluru = {lat: -7.2932357, lng: 112.8040983};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBavXz79ERuvwE8ppyozR1KodgHD_jJQpY&callback=initMap">
+    </script>
+
 <body>
 
     <div id="wrapper">
@@ -66,9 +90,9 @@
                         <li>
                             <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
@@ -89,6 +113,10 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
+                    <h3>OALAH</h3>
+                    <div id="map"></div>
+                    <h3>END OALAH</h3>
+                                
                     @foreach($report as $report)
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -123,11 +151,15 @@
                                 </table>
                             </div>
                             <div>
-                                <img src="{{url('')}}/canteen.jpg">
+
+                            </div>
+                            <div>
+                                <img src="{{url('')}}/{{$report->imagepath}}">
                                 <br>
                                 @if($report->isvalidated == 0)
                                     <br>
                                     <a href="{{url('')}}/validate-report/{{$report->id}}" class="button"><button>Validate this report</button></a>
+                                    <br>
                                 @endif
                             </div>
                         </div>

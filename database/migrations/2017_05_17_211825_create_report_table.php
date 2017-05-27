@@ -17,8 +17,8 @@ class CreateReportTable extends Migration
             $table->string('title')->unique();
             $table->text('description')->nullable();
             $table->string('imagepath')->nullable();
-            $table->decimal('longitude')->nullable();
-            $table->decimal('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->boolean('isvalidated')->nullable();
             $table->integer('staff')->nullable();
             $table->rememberToken();
