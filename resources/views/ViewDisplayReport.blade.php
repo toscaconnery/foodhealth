@@ -32,31 +32,12 @@
 
 </head>
 
-<style>
-#map {
-width: 500px;
-height: 400px;
-}
-</style>
 
-    <script>
-      function initMap() {
-        var uluru = {lat: -7.2932357, lng: 112.8040983};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 16,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBavXz79ERuvwE8ppyozR1KodgHD_jJQpY&callback=initMap">
-    </script>
+
+    
 
 <body>
+
 
     <div id="wrapper">
 
@@ -113,11 +94,33 @@ height: 400px;
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>OALAH</h3>
-                    <div id="map"></div>
-                    <h3>END OALAH</h3>
                                 
                     @foreach($report as $report)
+
+                    <style>
+                    #map{{$report->id}} {
+                    width: 500px;
+                    height: 400px;
+                    }
+                    </style>
+
+                    <script>
+                      function initMap{{$report->id}}() {
+                        var uluru = {lat: {{$report->latitude}}, lng: {{$report->longitude}} };
+                        var map{{$report->id}} = new google.maps.Map(document.getElementById('map{{$report->id}}'), {
+                          zoom: 19,
+                          center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                          position: uluru,
+                          map: map{{$report->id}}
+                        });
+                      }
+                    </script>
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBavXz79ERuvwE8ppyozR1KodgHD_jJQpY&callback=initMap{{$report->id}}">
+                    </script>
+
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h3>{{$report->title}}</h3>
@@ -151,7 +154,7 @@ height: 400px;
                                 </table>
                             </div>
                             <div>
-
+                            <div id="map{{$report->id}}"></div>
                             </div>
                             <div>
                                 <img src="{{url('')}}/{{$report->imagepath}}">
