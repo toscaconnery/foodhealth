@@ -14,9 +14,14 @@ class ControllerModifyAccount extends Controller
 {
     public function EditUser()
     {
-        $this->data['user'] = DB::select('SELECT u.* FROM users u WHERE u.id = '.Auth::user()->id)[0];
+        if(Auth::check()){
+            $this->data['user'] = DB::select('SELECT u.* FROM users u WHERE u.id = '.Auth::user()->id)[0];
 
-    	return view('FormModifyAccount', $this->data);
+            return view('FormModifyAccount', $this->data);
+        }
+        else{
+            return redirect('/');
+        }
     }
 
     public function ValidateData()
@@ -35,21 +40,21 @@ class ControllerModifyAccount extends Controller
                 $user->email = $request->email;
             }
             if(isset($request->password) and ($request->password == $request->confirmpassword)){
-                //dd($user->password);
+                //dd('passwordnya berubah');
                 $user->password = bcrypt($request->password);
                 //dd($user->password);
             }
             if(isset($request->gender)){
                 $user->gender = $request->gender;
             }
-            if(isset($request->Phone)){
+            if(isset($request->phone)){
                 $user->phone = $request->phone;
             }
-            if(isset($request->DoB)){
+            if(isset($request->dob)){
                 $user->dob = $request->dob;
             }
             $user->save();
         }
-        return redirect('/home');
+        return redirect('display-report');
     }
 }

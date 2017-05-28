@@ -119,7 +119,7 @@
                                             <p class="help-block">Make sure you type a correct password.</p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Selects</label>
+                                            <label>Job Position</label>
                                             <select name="usertype" class="form-control">
                                                 <option value="1">Supervisor</option>
                                                 <option value="0">Employee</option>

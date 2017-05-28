@@ -28,6 +28,9 @@ Route::get('validate-report/{id}', 'ControllerDisplayReport@ValidateReport');
 Route::get('modify-account', 'ControllerModifyAccount@EditUser');
 Route::post('modify-account', 'ControllerModifyAccount@SaveToDB');
 
+Route::get('add-account', 'ControllerAddAccount@AddUser');
+Route::post('add-account', 'ControllerAddAccount@SaveToDB');
+
 Route::get('logout', function() {
 	Auth::logout();
 	return view('home');

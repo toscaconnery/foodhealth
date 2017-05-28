@@ -69,6 +69,9 @@
                             <!-- /input-group -->
                         </li>
                         <li>
+                            <a href="{{url('')}}/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
+                        </li>
+                        <li>
                             <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
                         {{-- <li>
@@ -98,6 +101,9 @@
                     @foreach($report as $report)
 
                     <style>
+                    #map_wrapper{{$report->id}} {
+                        height: 400px;
+                    }
                     #map{{$report->id}} {
                     width: 500px;
                     height: 400px;
@@ -106,13 +112,13 @@
 
                     <script>
                       function initMap{{$report->id}}() {
-                        var uluru = {lat: {{$report->latitude}}, lng: {{$report->longitude}} };
+                        var uluru{{$report->id}} = {lat: {{$report->latitude}}, lng: {{$report->longitude}} };
                         var map{{$report->id}} = new google.maps.Map(document.getElementById('map{{$report->id}}'), {
                           zoom: 19,
-                          center: uluru
+                          center: uluru{{$report->id}}
                         });
-                        var marker = new google.maps.Marker({
-                          position: uluru,
+                        var marker{{$report->id}} = new google.maps.Marker({
+                          position: uluru{{$report->id}},
                           map: map{{$report->id}}
                         });
                       }
@@ -153,11 +159,14 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
-                            <div id="map{{$report->id}}"></div>
+                            <div id="map_wrapper{{$report->id}}">
+                                <div id="map{{$report->id}}"></div>
                             </div>
+                            <br>
                             <div>
-                                <img src="{{url('')}}/{{$report->imagepath}}">
+                                <div class="crop">
+                                    <img src="{{url('')}}/{{$report->imagepath}}">
+                                </div>
                                 <br>
                                 @if($report->isvalidated == 0)
                                     <br>

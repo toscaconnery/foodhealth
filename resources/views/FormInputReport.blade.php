@@ -65,6 +65,9 @@
                             <!-- /input-group -->
                         </li>
                         <li>
+                            <a href="{{url('')}}/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
+                        </li>
+                        <li>
                             <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
                         {{-- <li>

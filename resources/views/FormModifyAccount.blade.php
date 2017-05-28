@@ -64,6 +64,9 @@
                             <!-- /input-group -->
                         </li>
                         <li>
+                            <a href="{{url('')}}/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
+                        </li>
+                        <li>
                             <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
                         {{-- <li>
@@ -82,7 +85,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Form Add Account</h1>
+                    <h1 class="page-header">Form Modify Account</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
