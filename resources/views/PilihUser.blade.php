@@ -90,54 +90,41 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Form Input Report</h1>
+                    <h1 class="page-header">Wellcome Admin!</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Only input a valid report!
+                <div>
+                    <form>
+                        <div class="form-group">
+                            <label>Pilih User</label>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                </tr>
+                                @php
+                                    $x = 1;
+                                @endphp
+                                @foreach($listuser as $data)
+                                <tr>
+                                    <td>{{$x++}}</td>
+                                    <td>{{$data->name}}</td>
+                                    <td>{{$data->usertype}}</td>
+                                    <td><a href="{{url('')}}/web/modify-account/{{$data->id}}">Edit</a></td>
+                                </tr>
+                                <option value="{{$data->id}}">{{$data->name}}</option>
+                                @endforeach
+                            </table>
                         </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form" action="" method="post" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
-                                        <div class="form-group">
-                                            <label>Title</label>
-                                            <input type="text" name="title" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea class="form-control" name="description" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>File input</label>
-                                            <input type="file" name="berkas">
-                                        </div>
-                                        
-
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                <!--NOTHING HERE, JUST A SPACE-->
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Edit</button>
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+                    </form>
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->

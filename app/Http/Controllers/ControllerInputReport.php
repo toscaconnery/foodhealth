@@ -44,7 +44,7 @@ class ControllerInputReport extends Controller
             }
             $report->save();
 
-            return redirect('display-report');
+            return redirect('web/display-report');
         }
         else{
             return redirect('/');

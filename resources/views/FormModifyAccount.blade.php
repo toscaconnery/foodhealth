@@ -63,18 +63,22 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        @if(Auth::user()->usertype == "Admin")
                         <li>
-                            <a href="{{url('')}}/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
+                            <a href="{{url('')}}/web/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
                         </li>
                         <li>
-                            <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
+                            <a href="{{url('')}}/web/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
+                        @endif
                         {{-- <li>
-                            <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
+                            <a href="{{url('')}}/web/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
                         </li> --}}
+                        @if(Auth::user()->usertype == "Supervisor")
                         <li>
-                            <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
+                            <a href="{{url('')}}/web/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -125,33 +129,48 @@
                                             <label>Gender</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="gender" id="optionsRadios1" value="1" {{$user->gender == 1 ? "checked" : ""}}>Male
+                                                    <input type="radio" name="gender" id="optionsRadios1" value="Male" {{$user->gender == 1 ? "checked" : ""}}>Male
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="gender" id="optionsRadios2" value="2" {{$user->gender == 2 ? "checked" : ""}}>Female
+                                                    <input type="radio" name="gender" id="optionsRadios2" value="Female" {{$user->gender == 2 ? "checked" : ""}}>Female
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input type="number" name="phone" class="form-control" value="{{$user->phone}}">
+                                            <input type="text" name="phone" class="form-control" value="{{$user->phone}}">
                                         </div>
                                         <div class="form-group">
                                             <label>Date of birth</label>
                                             <input type="date" name="dob" class="form-control" value="{{$user->dob}}">  
                                         </div>
                                         <br>
-                                        <br>
-                                        <div class="form-group">
-                                            <label>Input your current password</label>
-                                            <input type="password" name="currentpassword" class="form-control">
-                                            <p class="help-block">Enter your password.</p>
-                                        </div>
 
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
+                                        <div id="authenticationModal" class="modal fade">
+                                            <div class="col-lg-3"></div>
+                                            <div class="col-lg-6 center">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Authenticate Yourself</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label>Input your current password</label>
+                                                        <input type="password" name="currentpassword" class="form-control">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-default">Confirm</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3"></div>
+                                        </div>
+                                        <button type="button" id="showModal" class="btn btn-default" data-toggle="modal" data-target="#authenticationModal">Save</button>
+
+                                        <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -174,6 +193,22 @@
 
     </div>
     <!-- /#wrapper -->
+
+    <!-- Modal -->
+    <script type="text/javascript">
+        var modal = document.getElementById('authenticationModal');
+        var btn = document.getElementById('showModal');
+
+        btn.onclick = function {
+            modal.display = "block";
+        }
+
+        window.onclick = function(event) {
+            if(event.target == modal) {
+                modal.display = "none";
+            }
+        }
+    </script>
 
     <!-- jQuery -->
     <script src="{{url('')}}/vendor/jquery/jquery.min.js"></script>

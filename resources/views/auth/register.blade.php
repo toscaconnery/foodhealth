@@ -121,26 +121,26 @@
                                         <div class="form-group">
                                             <label>Job Position</label>
                                             <select name="usertype" class="form-control">
-                                                <option value="1">Supervisor</option>
-                                                <option value="0">Employee</option>
+                                                <option value="Supervisor">Supervisor</option>
+                                                <option value="Staff">Staff</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Gender</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="gender" id="optionsRadios1" value="1">Male
+                                                    <input type="radio" name="gender" id="optionsRadios1" value="Male">Male
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="gender" id="optionsRadios2" value="2">Female
+                                                    <input type="radio" name="gender" id="optionsRadios2" value="Female">Female
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input type="number" name="phone" class="form-control">
+                                            <input type="text" name="phone" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Date of birth</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Hash;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -28,7 +29,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'display-report';
+    protected $redirectTo = 'web/display-report';
 
     /**
      * Create a new authentication controller instance.
@@ -58,15 +59,6 @@ class AuthController extends Controller
             'phone' => 'required',
             'dob' => 'required',
         ]);
-        // dd(Validator::make($data, [
-        //     'name' => 'required|max:255',
-        //     'email' => 'required|email|max:255|unique:users',
-        //     'password' => 'required|min:6|confirmed',
-        //     'usertype' => 'required|max:30',
-        //     'gender' => 'required',
-        //     'phone' => 'required',
-        //     'dob' => 'required',
-        // ]));
     }
 
     /**
@@ -81,7 +73,7 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => Hash::make($data['password']),
             'usertype' => $data['usertype'],
             'gender' => $data['gender'],
             'phone' => $data['phone'],

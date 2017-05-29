@@ -68,18 +68,22 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        @if(Auth::user()->usertype == "Admin")
                         <li>
-                            <a href="{{url('')}}/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
+                            <a href="{{url('')}}/web/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
                         </li>
                         <li>
-                            <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
+                            <a href="{{url('')}}/web/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
+                        @endif
                         {{-- <li>
-                            <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
+                            <a href="{{url('')}}/web/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
                         </li> --}}
+                        @if(Auth::user()->usertype == "Supervisor")
                         <li>
-                            <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
+                            <a href="{{url('')}}/web/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -170,7 +174,7 @@
                                 <br>
                                 @if($report->isvalidated == 0)
                                     <br>
-                                    <a href="{{url('')}}/validate-report/{{$report->id}}" class="button"><button>Validate this report</button></a>
+                                    <a href="{{url('')}}/web/validate-report/{{$report->id}}" class="button"><button>Validate this report</button></a>
                                     <br>
                                 @endif
                             </div>

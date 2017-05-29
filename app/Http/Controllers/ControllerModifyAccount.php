@@ -12,12 +12,17 @@ use App\User;
 
 class ControllerModifyAccount extends Controller
 {
-    public function EditUser()
+    public function EditUser($id)
     {
         if(Auth::check()){
-            $this->data['user'] = DB::select('SELECT u.* FROM users u WHERE u.id = '.Auth::user()->id)[0];
-
-            return view('FormModifyAccount', $this->data);
+            if(Auth::user()->usertype == "Admin"){
+                $this->data['user'] = DB::select('SELECT u.* FROM users u WHERE u.id = '.$id)[0];
+                //dd($this->data['user']);
+                return view('FormModifyAccount', $this->data);
+            }
+            else{
+                return redirect('/');
+            }
         }
         else{
             return redirect('/');
@@ -29,32 +34,62 @@ class ControllerModifyAccount extends Controller
     	//
     }
 
-    public function SaveToDB(Request $request)
+    public function PilihUser()
     {
-    	$user = User::find(Auth::user()->id);
-        if(Hash::check($request->currentpassword, $user->password)){
-            if(isset($request->name)){
-                $user->name = $request->name;
+        if(Auth::check()){
+            if(Auth::user()->usertype = "Admin"){
+                $this->data['listuser'] = DB::select('SELECT u.* FROM users u');
+                return view('PilihUser', $this->data);
             }
-            if(isset($request->email)){
-                $user->email = $request->email;
+            else{
+                return redirect('/');
             }
-            if(isset($request->password) and ($request->password == $request->confirmpassword)){
-                //dd('passwordnya berubah');
-                $user->password = bcrypt($request->password);
-                //dd($user->password);
-            }
-            if(isset($request->gender)){
-                $user->gender = $request->gender;
-            }
-            if(isset($request->phone)){
-                $user->phone = $request->phone;
-            }
-            if(isset($request->dob)){
-                $user->dob = $request->dob;
-            }
-            $user->save();
         }
-        return redirect('display-report');
+        else{
+            return redirect('/');
+        }
+    }
+
+    public function SaveToDB(Request $request, $id)
+    {
+        //dd("masuk ke fungsi SaveToDB", $request);
+        if(Auth::check()){
+            if(Auth::user()->usertype = "Admin"){
+                $user = User::find($id);
+                $myself = User::find(Auth::user()->id);
+                //jika authentifikasi cocok
+                if(Hash::check($request->currentpassword, $myself->password)){
+                    if($request->name != NULL){
+                        $user->name = $request->name;
+                    }
+                    if($request->email != NULL){
+                        $user->email = $request->email;
+                    }
+                    if(($request->password != NULL) and ($request->password == $request->confirmpassword)){
+                        //dd('passwordnya berubah');
+                        $user->password = bcrypt($request->password);
+                        //dd($user->password);
+                    }
+                    if($request->gender != NULL){
+                        $user->gender = $request->gender;
+                    }
+                    if($request->phone != NULL){
+                        $user->phone = $request->phone;
+                    }
+                    if($request->dob != NULL){
+                        $user->dob = $request->dob;
+                    }
+                    $user->save();
+                }
+                return redirect('home-admin');
+            }
+            else{
+                return redirect('/');
+            }
+        }
+        else{
+            return redirect('/');
+        }
+            	
     }
 }

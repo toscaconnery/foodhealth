@@ -64,18 +64,22 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        @if(Auth::user()->usertype == "Admin")
                         <li>
-                            <a href="{{url('')}}/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
+                            <a href="{{url('')}}/web/add-account"><i class="fa fa-edit fa-fw"></i>ADD ACCOUNT</a>
                         </li>
                         <li>
-                            <a href="{{url('')}}/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
+                            <a href="{{url('')}}/web/modify-account"><i class="fa fa-edit fa-fw"></i>MODIFY ACCOUNT</a>
                         </li>
+                        @endif
                         {{-- <li>
-                            <a href="{{url('')}}/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
+                            <a href="{{url('')}}/web/input-report"><i class="fa fa-edit fa-fw"></i> INPUT REPORT</a>
                         </li> --}}
+                        @if(Auth::user()->usertype == "Supervisor")
                         <li>
-                            <a href="{{url('')}}/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
+                            <a href="{{url('')}}/web/display-report"><i class="fa fa-table fa-fw"></i>DISPLAY REPORT</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -100,7 +104,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="" method="post">
+                                    <form role="form" action="" method="post" enctype="multipart/form-data">
                                         {{csrf_field()}}
                                         <div class="form-group">
                                             <label>Name</label>
@@ -125,33 +129,57 @@
                                         <div class="form-group">
                                             <label>Job Position</label>
                                             <select name="usertype" class="form-control">
-                                                <option value="1">Supervisor</option>
-                                                <option value="0">Employee</option>
+                                                <option value="Supervisor">Supervisor</option>
+                                                <option value="Staff">Staff</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Gender</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="gender" id="optionsRadios1" value="1">Male
+                                                    <input type="radio" name="gender" id="optionsRadios1" value="Male">Male
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="gender" id="optionsRadios2" value="2">Female
+                                                    <input type="radio" name="gender" id="optionsRadios2" value="Female">Female
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input type="number" name="phone" class="form-control">
+                                            <input type="text" name="phone" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Date of birth</label>
                                             <input type="date" name="dob" class="form-control">  
                                         </div>
+                                        <div class="form-group">
+                                          <label>Photo</label>
+                                          <input type="file" id="modul" name="berkas">
+                                        </div>
                                         <br>
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
+                                        <div id="authenticationModal" class="modal fade">
+                                            <div class="col-lg-3"></div>
+                                            <div class="col-lg-6 center">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Authenticate Yourself</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label>Input your current password</label>
+                                                        <input type="password" name="currentpassword" class="form-control">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-default">Confirm</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3"></div>
+                                        </div>
+                                        <button type="button" id="showModal" class="btn btn-default" data-toggle="modal" data-target="#authenticationModal">Save</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
                                     </form>
                                 </div>

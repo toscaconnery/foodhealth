@@ -17,21 +17,22 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home-admin', 'HomeController@indexadmin');
 
-Route::get('input-report', 'ControllerInputReport@NewReportButton');
-Route::post('input-report', 'ControllerInputReport@SubmitReportButton');
+Route::get('web/input-report', 'ControllerInputReport@NewReportButton');
+Route::post('web/input-report', 'ControllerInputReport@SubmitReportButton');
 
-Route::get('display-report', 'ControllerDisplayReport@LoadDatabase');
-Route::get('validate-report/{id}', 'ControllerDisplayReport@ValidateReport');
+Route::get('web/display-report', 'ControllerDisplayReport@LoadDatabase');
+Route::get('web/validate-report/{id}', 'ControllerDisplayReport@ValidateReport');
 
-Route::get('modify-account', 'ControllerModifyAccount@EditUser');
-Route::post('modify-account', 'ControllerModifyAccount@SaveToDB');
+Route::get('web/modify-account', 'ControllerModifyAccount@PilihUser');
+Route::get('web/modify-account/{id}', 'ControllerModifyAccount@EditUser');
+Route::post('web/modify-account/{id}', 'ControllerModifyAccount@SaveToDB');
 
-Route::get('add-account', 'ControllerAddAccount@AddUser');
-Route::post('add-account', 'ControllerAddAccount@SaveToDB');
+Route::get('web/add-account', 'ControllerAddAccount@AddUser');
+Route::post('web/add-account', 'ControllerAddAccount@SaveToDB');
 
-Route::get('logout', function() {
+Route::get('web/logout', function() {
 	Auth::logout();
 	return view('home');
 });
